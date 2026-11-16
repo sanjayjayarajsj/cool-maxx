@@ -1,0 +1,23 @@
+<header class="nav" [class.scrolled]="scrolled()" [class.open]="open()">
+  <div class="container row">
+    <a routerLink="/" class="logo" aria-label="COOL MAXX home">
+      <span class="crop"><img [src]="site.assets.logo" alt="COOL MAXX" width="150" height="150" /></span>
+    </a>
+
+    <nav class="links" aria-label="Main">
+      @for (l of links; track l.path; let i = $index) {
+        <a [routerLink]="l.path" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: l.path === '/' }"
+           [style.--i]="i">{{ l.label }}</a>
+      }
+      <a routerLink="/contact" class="btn btn-primary cta" [style.--i]="links.length">
+        Get a Quote
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </nav>
+
+    <button class="burger" type="button" (click)="toggle()" [attr.aria-expanded]="open()" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="progress" #bar></div>
+</header>

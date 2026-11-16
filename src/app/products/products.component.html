@@ -1,0 +1,48 @@
+<section class="page-banner">
+  <div class="container">
+    <div class="crumbs"><a routerLink="/">Home</a><span class="sep">/</span><span>Products</span></div>
+    <span class="eyebrow">Catalogue</span>
+    <h1>Our Products</h1>
+    <p>Explore our range of AC spare parts. Found what you need? Send us an enquiry.</p>
+  </div>
+</section>
+
+<section class="section list">
+  <div class="container">
+    <div class="toolbar">
+      <div class="chips" role="tablist">
+        @for (c of chips(); track c.id) {
+          <a class="chip" role="tab" [class.on]="category() === c.id"
+             routerLink="/products" [queryParams]="c.id === 'all' ? {} : { category: c.id }">
+            {{ c.name }} <em>{{ c.count }}</em>
+          </a>
+        }
+      </div>
+
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" placeholder="Search products, brands, models…" [value]="query()" (input)="onSearch($event)" aria-label="Search products" />
+      </label>
+    </div>
+
+    <p class="count">Showing <b>{{ filtered().length }}</b> {{ filtered().length === 1 ? 'product' : 'products' }}</p>
+
+    @if (filtered().length) {
+      <div class="grid">
+        @for (p of filtered(); track p.id; let i = $index) {
+          <div class="cell" [style.--i]="i"><app-product-card [product]="p" /></div>
+        }
+      </div>
+    } @else {
+      <div class="empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M8.5 11h5"/></svg>
+        <h3>No products found</h3>
+        <p>Try another category or keyword – or tell us what you’re looking for and we’ll source it.</p>
+        <div class="empty-actions">
+          <button class="btn btn-outline" type="button" (click)="clear()">Clear search</button>
+          <a routerLink="/contact" class="btn btn-primary">Ask us directly</a>
+        </div>
+      </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,15 @@
+main { min-height: 60vh; }
+.fab {
+  position: fixed; right: 22px; bottom: 22px; z-index: 900;
+  display: inline-flex; align-items: center; gap: .55rem; padding: .9rem 1.2rem; border-radius: 999px;
+  color: #fff; font: 600 .9rem var(--font-head);
+  background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
+  box-shadow: 0 12px 30px rgba(30,144,255,.5);
+  transition: transform .35s var(--ease);
+  animation: fabIn .8s 1.4s var(--ease) both, pulse 2.8s 2.4s infinite;
+  svg { width: 20px; height: 20px; }
+  &:hover { transform: translateY(-4px) scale(1.04); }
+}
+@keyframes fabIn { from { opacity: 0; transform: translateY(40px) scale(.8); } to { opacity: 1; transform: none; } }
+@keyframes pulse { 0% { box-shadow: 0 12px 30px rgba(30,144,255,.5), 0 0 0 0 rgba(30,144,255,.45); } 70%, 100% { box-shadow: 0 12px 30px rgba(30,144,255,.5), 0 0 0 18px rgba(30,144,255,0); } }
+@media (max-width: 520px) { .fab span { display: none; } .fab { padding: 1rem; } }

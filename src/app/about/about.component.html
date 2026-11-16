@@ -1,0 +1,42 @@
+<section class="page-banner">
+  <div class="container">
+    <div class="crumbs"><a routerLink="/">Home</a><span class="sep">/</span><span>About</span></div>
+    <span class="eyebrow">Who we are</span>
+    <h1>About COOL MAXX</h1>
+    <p>High-quality AC spare parts with a focus on reliability and customer service.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container story">
+    <div reveal="left">
+      <span class="eyebrow">Our story</span>
+      <h2>Keeping the world cool, one part at a time</h2>
+      <p>With years of experience in the HVAC industry, COOL MAXX supplies a complete range of AC spare parts to installers and service companies. Our focus is on quality, reliability and fast delivery.</p>
+      <p>Replace this text with your own story – when you started, who you serve and what makes you different.</p>
+      <a routerLink="/contact" class="btn btn-primary">Talk to our team</a>
+    </div>
+    <div class="photo" reveal="right"><app-smart-img [src]="site.assets.aboutImage" alt="COOL MAXX team" /></div>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="container">
+    <div class="stats" reveal>
+      @for (s of site.stats; track s.label) {
+        <div><strong [countUp]="s.value" [countSuffix]="s.suffix"></strong><span>{{ s.label }}</span></div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head center" reveal><span class="eyebrow">What we stand for</span><h2>Our values</h2></div>
+    <div class="values">
+      @for (v of values; track v.title; let i = $index) {
+        <article class="val" reveal [revealDelay]="i * 120"><span class="n">0{{ i + 1 }}</span><h3>{{ v.title }}</h3><p>{{ v.text }}</p></article>
+      }
+    </div>
+  </div>
+</section>

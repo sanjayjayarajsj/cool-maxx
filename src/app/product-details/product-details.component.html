@@ -1,0 +1,66 @@
+@if (product(); as p) {
+  <section class="page-banner slim">
+    <div class="container">
+      <div class="crumbs">
+        <a routerLink="/">Home</a><span class="sep">/</span>
+        <a routerLink="/products">Products</a><span class="sep">/</span>
+        <a routerLink="/products" [queryParams]="{ category: p.categoryId }">{{ category()?.name }}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section detail">
+    <div class="container layout">
+      <div class="gallery" reveal="left">
+        @for (x of [p]; track x.id) { <app-smart-img [src]="x.image" [alt]="x.name" /> }
+      </div>
+
+      <div class="info" reveal="right">
+        <span class="tag">{{ category()?.name }}</span>
+        <h1>{{ p.name }}</h1>
+        <p class="meta"><span>Brand: <b>{{ p.brand }}</b></span><span>Model: <b>{{ p.model }}</b></span></p>
+        <p class="desc">{{ p.description }}</p>
+
+        <div class="actions">
+          <a routerLink="/contact" [queryParams]="{ product: p.name + ' (' + p.model + ')' }" class="btn btn-primary">
+            Enquire about this product
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          @if (site.whatsapp) {
+            <a [href]="waLink()" target="_blank" rel="noopener" class="btn btn-outline">WhatsApp</a>
+          }
+        </div>
+
+        @if (specs().length) {
+          <h2>Specifications</h2>
+          <dl class="specs">
+            @for (s of specs(); track s[0]) {
+              <div><dt>{{ s[0] }}</dt><dd>{{ s[1] }}</dd></div>
+            }
+          </dl>
+        }
+      </div>
+    </div>
+  </section>
+
+  @if (related().length) {
+    <section class="section section--tint">
+      <div class="container">
+        <div class="section-head" reveal><span class="eyebrow">You may also like</span><h2>Related products</h2></div>
+        <div class="rel-grid">
+          @for (r of related(); track r.id; let i = $index) {
+            <div reveal [revealDelay]="i * 110"><app-product-card [product]="r" /></div>
+          }
+        </div>
+      </div>
+    </section>
+  }
+} @else {
+  <section class="section nf">
+    <div class="container">
+      <h1>Product not found</h1>
+      <p>This product doesn’t exist or was removed.</p>
+      <a routerLink="/products" class="btn btn-primary">Back to products</a>
+    </div>
+  </section>
+}

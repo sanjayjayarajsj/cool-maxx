@@ -1,0 +1,164 @@
+<!-- ================= HERO ================= -->
+<section class="hero" #hero>
+  <div class="bg" aria-hidden="true">
+    <span class="blob b1"></span><span class="blob b2"></span><span class="grid-lines"></span>
+    @for (i of snow; track i) { <i class="flake" [style.--i]="i"></i> }
+  </div>
+
+  <div class="container hero-grid">
+    <div class="copy">
+      <span class="pill" data-in><i></i> Premium AC Spare Parts Supplier</span>
+
+      <h1 class="headline" aria-label="Your Trusted Partner for AC Spare Parts">
+        @for (w of headline; track $index) {
+          <span class="word" aria-hidden="true"><span>{{ w }}</span></span>
+        }
+        <span class="nb">
+          @for (w of accent; track $index) {
+            <span class="word grad" aria-hidden="true"><span>{{ w }}</span></span>
+          }
+        </span>
+      </h1>
+
+      <p class="lead" data-in>
+        Compressors, refrigerants, coils, motors and more – browse our catalogue and send an enquiry in seconds.
+      </p>
+
+      <div class="actions" data-in>
+        <a routerLink="/products" class="btn btn-primary">
+          Explore Products
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a routerLink="/contact" class="btn btn-ghost">Contact Us</a>
+      </div>
+
+      <ul class="points" data-in>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg>Genuine parts</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg>Quick replies</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg>Trade &amp; bulk supply</li>
+      </ul>
+    </div>
+
+    <div class="media">
+      <div class="frame">
+        <video #vid [src]="site.assets.heroVideo" [attr.poster]="site.assets.heroPoster || null"
+               autoplay muted loop playsinline preload="metadata"></video>
+        <span class="shine"></span>
+      </div>
+      <div class="float-chip c1"><b>❄</b> Cool performance</div>
+      <div class="float-chip c2"><b>✓</b> Trusted service</div>
+    </div>
+  </div>
+
+  <a href="#categories" class="scroll-cue" aria-label="Scroll down"><span></span></a>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    @for (c of marquee; track $index) { <span>{{ c.name }}</span><i>✦</i> }
+  </div>
+</div>
+
+<!-- ================= CATEGORIES ================= -->
+<section class="section" id="categories">
+  <div class="container">
+    <div class="section-head" reveal>
+      <span class="eyebrow">Shop by category</span>
+      <h2>Everything your AC service needs</h2>
+      <p>Pick a category to see the full range and send us your enquiry.</p>
+    </div>
+
+    <div class="cat-grid">
+      @for (c of categories; track c.id; let i = $index) {
+        <a class="cat" [routerLink]="['/products']" [queryParams]="{ category: c.id }" reveal [revealDelay]="(i % 3) * 110">
+          <div class="cat-img"><app-smart-img [src]="c.image" [alt]="c.name" /></div>
+          <div class="cat-body">
+            <h3>{{ c.name }}</h3>
+            <p>{{ c.description }}</p>
+            <span class="go">Browse <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURED ================= -->
+<section class="section section--tint">
+  <div class="container">
+    <div class="row-head" reveal>
+      <div class="section-head" style="margin:0">
+        <span class="eyebrow">Featured</span>
+        <h2>Popular products</h2>
+      </div>
+      <a routerLink="/products" class="btn btn-outline">View all products</a>
+    </div>
+
+    <div class="prod-grid">
+      @for (p of featured; track p.id; let i = $index) {
+        <div reveal [revealDelay]="(i % 3) * 110"><app-product-card [product]="p" /></div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY US ================= -->
+<section class="section section--dark why">
+  <div class="container">
+    <div class="section-head center" reveal>
+      <span class="eyebrow">Why COOL MAXX</span>
+      <h2>Built on quality, delivered with care</h2>
+    </div>
+
+    <div class="why-grid">
+      @for (w of why; track w.title; let i = $index) {
+        <article class="why-card" reveal [revealDelay]="i * 100">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path [attr.d]="w.icon"/></svg></span>
+          <h3>{{ w.title }}</h3>
+          <p>{{ w.text }}</p>
+        </article>
+      }
+    </div>
+
+    <div class="stats" reveal>
+      @for (s of site.stats; track s.label) {
+        <div><strong [countUp]="s.value" [countSuffix]="s.suffix"></strong><span>{{ s.label }}</span></div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center" reveal>
+      <span class="eyebrow">Simple process</span>
+      <h2>From browsing to quote in 3 steps</h2>
+    </div>
+    <div class="steps">
+      @for (s of steps; track s.n; let i = $index) {
+        <div class="step" reveal [revealDelay]="i * 140">
+          <span class="num">{{ s.n }}</span>
+          <h3>{{ s.title }}</h3>
+          <p>{{ s.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="container cta-wrap">
+  <div class="cta" reveal="zoom">
+    <span class="orb"></span>
+    <h2>Ready to find the right part?</h2>
+    <p>Tell us what you need – we’ll get back with availability and a quote.</p>
+    <div class="cta-actions">
+      <a routerLink="/contact" class="btn btn-light">Send an enquiry</a>
+      @if (site.whatsapp) {
+        <a [href]="'https://wa.me/' + site.whatsapp" target="_blank" rel="noopener" class="btn btn-ghost">WhatsApp us</a>
+      }
+    </div>
+  </div>
+</section>

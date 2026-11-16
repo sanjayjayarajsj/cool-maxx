@@ -1,0 +1,37 @@
+<footer class="footer">
+  <div class="container grid">
+    <div class="brand">
+      <span class="chip-logo"><span class="crop"><img [src]="site.assets.logo" alt="COOL MAXX" width="150" height="150" loading="lazy" /></span></span>
+      <p>Your trusted source for premium AC spare parts. Browse the catalogue and send us an enquiry – we reply fast.</p>
+    </div>
+
+    <div>
+      <h4>Explore</h4>
+      <a routerLink="/">Home</a>
+      <a routerLink="/products">Products</a>
+      <a routerLink="/about">About</a>
+      <a routerLink="/contact">Contact</a>
+    </div>
+
+    <div>
+      <h4>Categories</h4>
+      @for (c of categories; track c.id) {
+        <a routerLink="/products" [queryParams]="{ category: c.id }">{{ c.name }}</a>
+      }
+    </div>
+
+    <div>
+      <h4>Get in touch</h4>
+      <a [href]="'tel:' + site.phone.replace(' ', '')">{{ site.phone }}</a>
+      <a [href]="'mailto:' + site.email">{{ site.email }}</a>
+      <span>{{ site.hours }}</span>
+      @if (site.whatsapp) {
+        <a class="wa" [href]="'https://wa.me/' + site.whatsapp" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      }
+    </div>
+  </div>
+  <div class="container bottom">
+    <span>© {{ year }} {{ site.name }} {{ site.tagline }}. All rights reserved.</span>
+    <a href="#top" class="top" (click)="$event.preventDefault(); scrollTop()">Back to top ↑</a>
+  </div>
+</footer>

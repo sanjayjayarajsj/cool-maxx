@@ -1,0 +1,15 @@
+<a class="card" [routerLink]="['/products', product.id]">
+  <div class="media">
+    <app-smart-img [src]="product.image" [alt]="product.name" />
+    <span class="tag">{{ categoryName }}</span>
+  </div>
+  <div class="body">
+    <p class="brand">{{ product.brand }} · {{ product.model }}</p>
+    <h3>{{ product.name }}</h3>
+    <p class="desc">{{ product.shortDescription }}</p>
+    <span class="more">
+      View details
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </span>
+  </div>
+</a>

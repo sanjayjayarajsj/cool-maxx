@@ -1,0 +1,17 @@
+.footer { background: var(--navy-950); color: #a9bdd6; padding-top: 4.5rem; position: relative; overflow: hidden;
+  &::before { content: ''; position: absolute; top: -200px; right: -120px; width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(30,144,255,.25), transparent 70%); pointer-events: none; } }
+.grid { position: relative; display: grid; grid-template-columns: 1.5fr 1fr 1.2fr 1.3fr; gap: 3rem; padding-bottom: 3.5rem;
+  > div { display: flex; flex-direction: column; gap: .7rem; align-items: flex-start; } }
+h4 { color: #fff; font-size: 1rem; margin-bottom: .6rem; }
+.grid a, .grid span { font-size: .93rem; }
+.grid a { position: relative; transition: color .3s, transform .3s var(--ease); &:hover { color: #fff; transform: translateX(4px); } }
+.wa { color: #4ade80 !important; }
+.brand p { font-size: .93rem; max-width: 300px; margin-top: 1rem; }
+.chip-logo { display: inline-block; background: #fff; border-radius: 14px; padding: 0 .4rem; }
+.crop { display: block; width: 150px; height: 76px; overflow: hidden; }
+.crop img { width: 150px; height: 150px; margin-top: -31px; }
+.bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 1.5rem 0; border-top: 1px solid rgba(255,255,255,.1); font-size: .85rem;
+  .top:hover { color: #fff; } }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
